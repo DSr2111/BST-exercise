@@ -67,12 +67,38 @@ class BinarySearchTree {
   /** find(val): search the tree for a node with value val.
    * return the node, if found; else undefined. Uses iteration. */
 
-  find(val) {}
+  find(val) {
+    let currentNode = this.root;
+    let found = false;
+
+    if (val === currentNode.val) return currentNode;
+
+    while (currentNode && !found) {
+      if (val < currentNode.val) {
+        currentNode = currentNode.left;
+      } else if (val > currentNode.val) {
+        currentNode = currentNode.right;
+      } else {
+        found = true;
+      }
+    }
+  }
 
   /** findRecursively(val): search the tree for a node with value val.
    * return the node, if found; else undefined. Uses recursion. */
 
-  findRecursively(val) {}
+  findRecursively(val, current = this.root) {
+    if (this.root === null) return undefined;
+
+    if (val < current.val) {
+      if (current.left === nul) return undefined;
+      return this.findRecursively(val, current.left);
+    } else if (val > current.val) {
+      if (current.right === null) return undefined;
+      return this.findRecursively(val, current.right);
+    }
+    return current;
+  }
 
   /** dfsPreOrder(): Traverse the array using pre-order DFS.
    * Return an array of visited nodes. */
